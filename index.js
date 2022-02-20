@@ -7,7 +7,7 @@ const { write } = require('fs');
 // NPM Packages
 const inquirer = require('inquirer');
 const mysql2 = require('mysql2');
-// const consoleTable = require('console.table');
+const cTable = require('console.table');
 
 // GIVEN a command-line application that accepts user input
 // WHEN I start the application
@@ -15,9 +15,9 @@ const mysql2 = require('mysql2');
 
 const startApp = async => {
     return inquirer.prompt([
-// view all departments, view all roles, view all employees, 
-// add a department, add a role, add an employee, 
-// and update an employee role
+// Primary options include: view all departments, view all roles, view all employees, 
+// Secondary options include: add a department, add a role, add an employee, 
+// Tertiary option: update an employee role
       {
         type: 'list',
         name: 'viewAddOrUpdate',
