@@ -1,59 +1,150 @@
 // ----- Requirements & Imports ----- //
 
-const seeds = require('./db/seeds.sql');
-const db = require ('./db/connection.sql');
-const { write } = require('fs');
+const seeds = require("./db/seeds.sql");
+const db = require("./db/connection.sql");
+const { write } = require("fs");
 
 // NPM Packages
-const inquirer = require('inquirer');
-const mysql2 = require('mysql2');
-const cTable = require('console.table');
+const inquirer = require("inquirer");
+const mysql2 = require("mysql2");
+const cTable = require("console.table");
 
 // GIVEN a command-line application that accepts user input
 // WHEN I start the application
-// THEN I am presented with the following options: 
+// THEN I am presented with the following options:
 
-const startApp = async => {
-    return inquirer.prompt([
-// Primary options include: view all departments, view all roles, view all employees, 
-// Secondary options include: add a department, add a role, add an employee, 
-// Tertiary option: update an employee role
+// Prompts for collecting data, starting with employee:
+
+createEmployee = (async) => {
+  return inquirer
+    .prompt([
       {
-        type: 'list',
-        name: 'viewAddOrUpdate',
-        message: 'What would you like to do?',
+        type: "input",
+        name: "empFirstName",
+        message: "Please enter your the employee's first name. (Required)",
+        validate: (empFirstName) => {
+          if (empFirstName) {
+            return true;
+          } else {
+            console.log("You must enter a first name for your employee!");
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "empLastName",
+        message: "Please enter your the employee's last name. (Required)",
+        validate: (empLastName) => {
+          if (empLastName) {
+            return true;
+          } else {
+            console.log("You must enter a last name for your employee!");
+          }
+        },
+      },
+      {
+        type: "list",
+        name: "empRole",
+        message: "Please select your the employee's role: ",
         choices: [
-            "View All Departments", 
-            "View All Roles", 
-            "View All Employees",
-            // "View Employees by Manager",
-            // "View Employees by Department",
-            // "View Total Utilized Budget of a Department",
-            new inquirer.Separator(),
-            "Add a department",
-            "Add a role",
-            "Add an employee",
-            new inquirer.Separator(),
-            "Update an employee role",
-            "Update employee managers",
-            // new inquirer.Separator(),
-            // "Delete department",
-            // "Delete role",
-            // "Delete employee" 
-        ]
-    }
+          "Specialty Support",
+          "Associate Engineer",
+          "Lead Engineer",
+          "Development Manager",
+          "Project Manager",
+          "Support Manager",
+          "Salesperson",
+          "General Counsel",
+          "Human Resources Manager",
+        ],
+      },
+      {
+        type: "input",
+        name: "empManager",
+        message: "Please select your the employee's manager, if applicable: ",
+        choices: [
+          "Development Manager",
+          "Project Manager",
+          "Support Manager",
+          "None",
+        ],
+      },
     ])
-.then(answers => {
-    // let seeds = '';
-    // if (answers === '') {
+    .then(({ empFirstName, empLastName, empRole, empManager }) => {
+      const employeeData = {
+        first_name: empFirstName,
+        last_name: empLastName,
+        role_id: empRole,
+        manager_id: empManager,
+      };
+      createEmployee(employeeData);
+    });
+};
 
-    // }
-    console.log(answers);
-});
-}; 
+// Prompt to create a department entry
+chooseDepartment = async () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "departmentName",
+      message: "Which department would you like to select?",
+      choices: [
+        "Support",
+        "Development",
+        "Management",
+        "Sales",
+        "Legal",
+        "Human Resources",
+      ],
+    },
+  ])
+  .then(({departmentName})=> {
+      const selectedDepartment = {dept_name: departmentName};
+      chooseDepartment(selectedDepartment);
+  });
+};
+
+const startApp = (async) => {
+  return inquirer
+    .prompt([
+      // Primary options include: view all departments, view all roles, view all employees,
+      // Secondary options include: add a department, add a role, add an employee,
+      // Tertiary option: update an employee role
+      {
+        type: "list",
+        name: "viewAddOrUpdate",
+        message: "What would you like to do?",
+        choices: [
+          "View All Departments",
+          "View All Roles",
+          "View All Employees",
+          // "View Employees by Manager",
+          // "View Employees by Department",
+          // "View Total Utilized Budget of a Department",
+          new inquirer.Separator(),
+          "Add a department",
+          "Add a role",
+          "Add an employee",
+          new inquirer.Separator(),
+          "Update an employee role",
+          "Update employee managers",
+          // new inquirer.Separator(),
+          // "Delete department",
+          // "Delete role",
+          // "Delete employee"
+        ],
+      },
+    ])
+    .then((answers) => {
+      // let seeds = '';
+      // if (answers === '') {
+
+      // }
+      console.log(answers);
+    });
+};
 
 startApp();
-
 
 // WHEN I choose to view all departments
 // const viewAllDepartments = () => {
@@ -61,21 +152,17 @@ startApp();
 // };
 // THEN I am presented with a formatted table showing department names and department ids
 
-
-
 // WHEN I choose to view all roles
 // const viewAllRoles = () => {
 //     const sql = `DESCRIBE roles(title, id, salary, dept_id)`;
 // };
 // THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
 
-
 // WHEN I choose to view all employees
 // const viewEmployees = () => {
-//      const sql = `DESCRIBE employees(id, first_name, last_name, role_id, manager_id) OUTER JOIN WITH roles(title, dept_id, salary) 
+//      const sql = `DESCRIBE employees(id, first_name, last_name, role_id, manager_id) OUTER JOIN WITH roles(title, dept_id, salary)
 // };
 // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-
 
 // WHEN I choose to add a department
 // THEN I am prompted to enter the name of the department and that department is added to the database
