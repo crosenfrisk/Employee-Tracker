@@ -104,6 +104,50 @@ chooseDepartment = async () => {
   });
 };
 
+// Prompt to add a new role entry
+addNewRole = async () => {
+    return inquirer.prompt([
+      {
+        type: "input",
+        name: "roleTitle",
+        message: "Which role would you like to choose?",
+        choices: [
+            "Specialty Support",
+            "Associate Engineer",
+            "Lead Engineer",
+            "Development Manager",
+            "Project Manager",
+            "Support Manager",
+            "Salesperson",
+            "General Counsel",
+            "Human Resources Manager",
+        ],
+      },
+      {
+        type: "input",
+        name: "roleSalary",
+        message: "Please enter the salary of the role.",
+      },
+      {
+        type: "input",
+        name: "roleDepartment",
+        message: "Which department does this role belong to?",
+        choices: [
+            "Support",
+            "Development",
+            "Management",
+            "Sales",
+            "Legal",
+            "Human Resources",
+        ],
+      },
+    ])
+    .then(({roleTitle, roleSalary, roleDepartment})=> {
+        const newRoleData = {title: roleTitle, salary: roleSalary, dept_id: roleDepartment};
+        addNewRole(newRoleData);
+    });
+  };
+
 const startApp = (async) => {
   return inquirer
     .prompt([
