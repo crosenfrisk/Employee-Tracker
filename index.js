@@ -1,13 +1,12 @@
 // ----- Requirements & Imports ----- //
-
-const seeds = require("./db/seeds.sql");
-const db = require("./db/connection.sql");
+// const db = require("./db/connection");
+// const seeds = require("./db/seeds.sql");
 const { write } = require("fs");
 
 // NPM Packages
 const inquirer = require("inquirer");
-const mysql2 = require("mysql2");
-const cTable = require("console.table");
+// const mysql2 = require("mysql2");
+// const cTable = require("console.table");
 
 // GIVEN a command-line application that accepts user input
 // WHEN I start the application
@@ -15,7 +14,7 @@ const cTable = require("console.table");
 
 // Prompts for collecting data, starting with employee:
 
-createEmployee = (async) => {
+createEmployee = async () => {
   return inquirer
     .prompt([
       {
@@ -81,7 +80,7 @@ createEmployee = (async) => {
     });
 };
 
-// Prompt to create a department entry
+// // Prompt to create a department entry
 chooseDepartment = async () => {
   return inquirer.prompt([
     {
@@ -104,7 +103,7 @@ chooseDepartment = async () => {
   });
 };
 
-// Prompt to add a new role entry
+// // Prompt to add a new role entry
 addNewRole = async () => {
     return inquirer.prompt([
       {
@@ -142,53 +141,58 @@ addNewRole = async () => {
         ],
       },
     ])
-    .then(({roleTitle, roleSalary, roleDepartment})=> {
+    .then(({roleTitle, roleSalary, roleDepartment}) => {
         const newRoleData = {title: roleTitle, salary: roleSalary, dept_id: roleDepartment};
         addNewRole(newRoleData);
     });
   };
 
-const startApp = (async) => {
-  return inquirer
-    .prompt([
-      // Primary options include: view all departments, view all roles, view all employees,
-      // Secondary options include: add a department, add a role, add an employee,
-      // Tertiary option: update an employee role
-      {
-        type: "list",
-        name: "viewAddOrUpdate",
-        message: "What would you like to do?",
-        choices: [
-          "View All Departments",
-          "View All Roles",
-          "View All Employees",
-          // "View Employees by Manager",
-          // "View Employees by Department",
-          // "View Total Utilized Budget of a Department",
-          new inquirer.Separator(),
-          "Add a department",
-          "Add a role",
-          "Add an employee",
-          new inquirer.Separator(),
-          "Update an employee role",
-          "Update employee managers",
-          // new inquirer.Separator(),
-          // "Delete department",
-          // "Delete role",
-          // "Delete employee"
-        ],
-      },
-    ])
-    .then((answers) => {
-      // let seeds = '';
-      // if (answers === '') {
+const startApp = async () => {
+  console.log(`
+   ==========================================================================
+   Welcome to Employee Tracker CLI. Please select from the following prompts:
+   ==========================================================================`);
 
-      // }
-      console.log(answers);
-    });
+  return inquirer.prompt([
+    // Primary options include: view all departments, view all roles, view all employees
+    {
+      type: "list",
+      name: "primaryOptions",
+      message: "What would you like to do?",
+      choices: [
+        "View All Departments",
+        "View All Roles",
+        "View All Employees",
+        new inquirer.Separator(),
+        "View Employees by Manager",
+        "View Employees by Department",
+        "View Total Utilized Budget of a Department",
+        new inquirer.Separator(),
+        "Add a department",
+        "Add a role",
+        "Add an employee",
+        new inquirer.Separator(),
+        "Update an employee role",
+        "Update employee managers",
+        new inquirer.Separator(),
+        "Delete department",
+        "Delete role",
+        "Delete employee"
+      ],
+    },
+  ]);
+  //     .then((answers) => {
+  //       // let seeds = '';
+  //       // if (answers === '') {
+
+  //       // }
+  //       console.log(JSON.stringify(answers, null, '  '));
+  //     });
 };
 
-startApp();
+startApp().then((answers) => {
+  console.log(answers);
+});
 
 // WHEN I choose to view all departments
 // const viewAllDepartments = () => {
