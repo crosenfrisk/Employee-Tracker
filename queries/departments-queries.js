@@ -9,3 +9,5 @@ addDepartment = () => {
     const sql = `INSERT INTO departments (name)
     VALUES(?)`;
 };
+
+module.exports = departmentsQueries;

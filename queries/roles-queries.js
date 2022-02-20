@@ -9,3 +9,5 @@ addRoleText = () => {
     const sql = `INSERT INTO roles (title, salary, department_id)
     VALUES(?,?,?)`;
 };
+
+module.exports = rolesQueries;
