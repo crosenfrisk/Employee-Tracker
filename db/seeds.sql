@@ -22,8 +22,6 @@ VALUES
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES 
 ('Winne','Delacroux',1,NULL);
-INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES
 ('Horatio','Maxweell',1,1),
 ('Colline','Glennon',1,NULL),
 ('Meggy','Melby',1,NULL),
