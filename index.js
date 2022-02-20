@@ -192,6 +192,7 @@ const startApp = async () => {
 
 startApp().then((answers) => {
   // if View all Departments
+  viewAllDepartments();
   // if View all Roles
   // if View all Employees
   // if View Employees by Manager
