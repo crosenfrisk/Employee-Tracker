@@ -191,6 +191,24 @@ const startApp = async () => {
 };
 
 startApp().then((answers) => {
+  // if View all Departments
+  // if View all Roles
+  // if View all Employees
+  // if View Employees by Manager
+  // if View Employees by Department
+  // if View Total Utilized Budget of a Department
+
+  // if Add a department
+  // if Add a role
+  // if Add an employee
+
+  // if Update an employee role
+  // if Update employee managers
+  
+  // if Delete department
+  // if Delete role
+  // if Delete employee
+  // 
   console.log(answers);
 });
 
