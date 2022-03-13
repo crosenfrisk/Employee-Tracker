@@ -1,13 +1,14 @@
-// import connection to database
-const connection = require('./connection');
+// for connecting to mysql
+const connection = require('../db/connection');
 
-viewAllDepartments = () => {
-    const sql = `SELECT * FROM departments(id, dept_name)`;
-};
+const viewAllDepartments = (cb) => {
+    const query = `SELECT * FROM departments(id, dept_name)`;
+    connection.query(query, (err, res) => {
+    // add whatever I need.
+    cb();
+    })
+}
 
-addDepartment = () => {
-    const sql = `INSERT INTO departments (name)
-    VALUES(?)`;
-};
+const addDepartment = () => `INSERT INTO departments (name) VALUES(?)`;
 
-module.exports = departmentsQueries;
+module.exports = { viewAllDepartments, addDepartment };

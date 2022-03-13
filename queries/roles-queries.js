@@ -1,13 +1,6 @@
-// import connection to database
-const connection = require('./connection');
+const viewAllRoles = () => `SELECT * FROM roles (id, title, salary, dept_id)`;
 
-viewAllRoles = () => {
-    const sql = `SELECT * FROM roles (id, title, salary, dept_id)`;
-};
-
-addRoleText = () => {
-    const sql = `INSERT INTO roles (title, salary, department_id)
+const addRoleText = () => `INSERT INTO roles (title, salary, department_id)
     VALUES(?,?,?)`;
-};
 
-module.exports = rolesQueries;
+module.exports = { viewAllRoles, addRoleText };

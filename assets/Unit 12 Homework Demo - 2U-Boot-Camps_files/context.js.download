@@ -1,0 +1,44 @@
+window.WistiaContext = {"account":{"id":1075528,"key":"2u-20","url":"https://2u-20.wistia.com"}};
+
+
+  WistiaContext["granary"] = {
+    creds: {"additional_auth_params":{"project_id":null}},
+    tusEndpoint: "https://fast-upload-v2.wistia.com/files/"
+  }
+
+  WistiaContext["account"]["price"] = 79.2;
+  WistiaContext["account"]["created_at"] = "2020-06-05 14:46:39 UTC;"
+  WistiaContext["account"]["video_limit"] = 2000;
+  WistiaContext["account"]["video_count"] = 1877;
+    WistiaContext["account"]["video_goals"] = "basic video hosting";
+
+    WistiaContext["account"]["plan_sku"] = "pro_video_99_scale_20_cents";
+    WistiaContext["account"]["on_free_plan"] = false;
+
+    WistiaContext["account"]["has_borrowed"] = false;
+
+  WistiaContext["account"]["features"] = {"id":35224,"sku":null,"name":null,"analytics":true,"marketing_tools":true,"user_management":true,"advanced_integrations":false,"created_at":"2017-03-03T15:32:40.000Z","updated_at":"2019-09-30T14:49:49.000Z","wistia_branding_optional":true,"plan_id":10123,"crm_integrations":false,"hubspot_v2":false,"a_b_tests":true,"channels":false,"channels_limited":true,"advertising_integrations":false};
+  WistiaContext["account"]["features"]["simple_and_easy"] = true;
+
+
+
+// OnboardingChecklist ================================================ //
+
+  WistiaContext["account"]["onboarding_checklist"] = {
+    has_created_a_project: true,
+    has_uploaded_a_video: true,
+    has_customized_a_video: true,
+    has_shared_a_video: true,
+    has_seen_stats_for_that_video: true
+  }
+// ========================================================================== //
+
+
+  WistiaContext["media"] = {
+    id: 70417312,
+    hashedId: "2lnle7xnpk",
+    name: "Unit 12 Homework Demo",
+    description: "\n",
+    url: "https://2u-20.wistia.com/medias/2lnle7xnpk",
+    update_name_and_desc_url: "https://2u-20.wistia.com/medias/2lnle7xnpk/update_name_and_description"
+  };

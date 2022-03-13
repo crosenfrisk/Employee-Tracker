@@ -1,7 +1,7 @@
 // ----- Requirements & Imports ----- //
 // const db = require("./db/connection");
 // const seeds = require("./db/seeds.sql");
-const { write } = require("fs");
+const {addDepartment} = require('./queries');
 
 // NPM Packages
 const inquirer = require("inquirer");
