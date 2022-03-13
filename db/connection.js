@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 const dotenv = require('dotenv');
 
-// initialize dotenv?
+// initialize dotenv
 dotenv.config();
 
 // adding password const
